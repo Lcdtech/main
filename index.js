@@ -8,7 +8,14 @@ const pathDir = path.join(__dirname, "")
 
 app.use(express.json()); // To support JSON-encoded bodies
 app.use(express.urlencoded({ extended: true })); // To support URL-encoded bodies
-
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*"); // Adjust this to fit your needs
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+});
 
 
 const getDataFromSheet = async () => {
