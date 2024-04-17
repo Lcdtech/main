@@ -4,7 +4,6 @@ const fs = require("fs");
 const app = express();
 const path = require("path");
 const { dataStructured } = require("./data");
-const filePath = path.join(__dirname, 'src', 'weaponData.json');
 
 app.use(express.json()); // To support JSON-encoded bodies
 app.use(express.urlencoded({ extended: true })); // To support URL-encoded bodies
@@ -106,13 +105,6 @@ const getDataFromSheet = async () => {
             BuildTypes: buildTypesArray,
             data: tierArray,
           });
-        }
-      });
-      fs.writeFile(filePath, JSON.stringify(mainArray, null, 2), err => {
-        if (err) {
-          console.error('Error writing file:', err);
-        } else {
-          console.log('Data written to weaponData.json');
         }
       });
     return mainArray; // This will return the rows from the sheet as an array
